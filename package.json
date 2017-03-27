@@ -54,7 +54,7 @@
     "js": "rollem",
     "templates:dev": "NODE_ENV=development DEBUG=metalsmith:* & node build/metalsmith.js",
     "templates": "NODE_ENV=production DEBUG=metalsmith:* & node build/metalsmith.js",
-    "publish": "NODE_ENV=production npm run build && gh-pages -d dist -b gh-pages",
+    "publish": "NODE_ENV=production gh-pages -d dist -b gh-pages",
     "clean:dist": "rm -rf dist",
     "clean:tmp": "rm -rf tmp",
     "clean": "npm run clean:dist && npm run clean:tmp",
