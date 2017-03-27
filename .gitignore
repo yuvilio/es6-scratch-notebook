@@ -1,0 +1,9 @@
+public/
+dist/*
+!dist/fonts/
+node_modules/
+.publish/
+_layouts/test
+content/test
+content/uploads
+npm-debug.log

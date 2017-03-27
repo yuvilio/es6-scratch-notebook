@@ -1,0 +1,135 @@
+{
+  "name": "es6-scratch-notebook",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "6.9.0"
+  },
+  "bin": {
+    "browser-sync": "./node_modules/browser-sync/bin/browser-sync.js",
+    "gh-pages": "./node_modules/gh-pages/bin/gh-pages",
+    "postcss": "./node_modules/postcss-cli/bin/postcss",
+    "rollup": "./node_modules/rollup/bin/rollup",
+    "rollem": "./node_modules/rollem/bin/rollem.js",
+    "stylelint": "./node_modules/stylelint/bin/stylelint.js",
+    "standard": "./node_modules/standard/bin/cmd.js",
+    "remark": "./node_modules/remark-cli/cli.js"
+  },
+  "watch": {
+    "lint:js": {
+      "patterns": [
+        "assets/js"
+      ],
+      "extensions": "js",
+      "ignore": "",
+      "quiet": false
+    },
+    "lint:css": {
+      "patterns": [
+        "assets/css",
+        "assets/css/components",
+        "assets/css/misc",
+        "assets/css/partials"
+      ],
+      "extensions": "css",
+      "ignore": "",
+      "quiet": false
+    }
+  },
+  "scripts": {
+    "watch": "npm-watch",
+    "lint:js": "standard assets/js/**/*.js",
+    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/*.css",
+    "lint:md": "remark --quiet content/**/*.md",
+    "start": "npm run watch:dev",
+    "watch:dev": " npm run browsersync & npm run watch:lint:md & npm run watch:js  & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev",
+    "browsersync": "browser-sync start --server dist --no-ui --no-notify --files dist/",
+    "watch:js": "npm run js:dev -- --watch",
+    "watch:css": "npm run styles:dev -- --watch --log",
+    "watch:lint:md": "npm run lint:md -- --watch",
+    "styles:dev": "postcss -c postcss.dev.json",
+    "styles": "postcss  -c postcss.prod.json",
+    "js:dev": "rollem",
+    "js": "rollem",
+    "templates:dev": "NODE_ENV=development DEBUG=metalsmith:* & node build/metalsmith.js",
+    "templates": "NODE_ENV=production DEBUG=metalsmith:* & node build/metalsmith.js",
+    "publish": "NODE_ENV=production npm run build && gh-pages -d dist -b gh-pages",
+    "clean:dist": "rm -rf dist",
+    "clean:tmp": "rm -rf tmp",
+    "clean": "npm run clean:dist && npm run clean:tmp",
+    "copy:dev": "rsync -avz --delete assets/fonts/ dist/assets/fonts/ ; rsync -avz content/uploads/ dist/uploads/  ",
+    "copy": "rsync -avz --delete assets/fonts/ dist/assets/fonts/ ; rsync -avz content/uploads/ dist/uploads/  "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuvilio/vertivortices.git"
+  },
+  "keywords": [
+    "blog",
+    "math",
+    "cognition"
+  ],
+  "bugs": {
+    "url": "https://github.com/yuvilio/vertivortices/issues"
+  },
+  "homepage": "https://yuvilio.github.io/vertivortices",
+  "author": "yuvilio",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
+    "babel-preset-env": "^1.1.4",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "browser-sync": "^2.18.8",
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.9.1",
+    "gh-pages": "^0.12.0",
+    "katex": "^0.7.1",
+    "metalsmith": "^2.3.0",
+    "metalsmith-branch": "0.0.5",
+    "metalsmith-collections": "^0.9.0",
+    "metalsmith-drafts": "0.0.1",
+    "metalsmith-excerpts": "^1.1.0",
+    "metalsmith-in-place": "^2.0.1",
+    "metalsmith-layouts": "^1.7.0",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-markdownit": "^0.4.0",
+    "metalsmith-metadata": "0.0.4",
+    "metalsmith-permalinks": "^0.5.0",
+    "metalsmith-prism": "^3.0.2",
+    "metalsmith-tags": "^2.0.0",
+    "metalsmith-watch": "^1.0.3",
+    "npm-watch": "^0.1.8",
+    "nunjucks": "^3.0.0",
+    "nunjucks-date": "^1.2.0",
+    "postcss": "^5.2.8",
+    "postcss-calc": "^5.3.1",
+    "postcss-cli": "^2.6.0",
+    "postcss-color-function": "^2.0.1",
+    "postcss-custom-media": "^5.0.1",
+    "postcss-custom-properties": "^5.0.1",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^9.0.0",
+    "postcss-nested": "^1.0.0",
+    "rollem": "^1.11.0",
+    "rollup": "^0.39.2",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-watch": "^3.2.2",
+    "standard": "^9.0.2",
+    "tachyons": "^4.6.1"
+  },
+  "dependencies": {
+    "prismjs": "^1.6.0",
+    "remark-cli": "^3.0.0",
+    "remark-lint": "^6.0.0",
+    "remark-preset-lint-recommended": "^2.0.0"
+  },
+  "browserlist": [
+    "last 2 versions",
+    "> 5%"
+  ]
+}
