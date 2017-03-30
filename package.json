@@ -19,7 +19,9 @@
   "watch": {
     "lint:js": {
       "patterns": [
-        "assets/js"
+        "assets/js",
+        "assets/js/functionaljs/01/",
+        "assets/js/basic-es6/01/"
       ],
       "extensions": "js",
       "ignore": "",
@@ -43,7 +45,7 @@
     "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "start": "npm run watch:dev",
-    "watch:dev": " npm run browsersync & npm run watch:lint:md & npm run watch:js  & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev",
+    "watch:dev": " npm run browsersync & npm run watch:lint:md & npm run watch:js  & npm run watch & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev",
     "browsersync": "browser-sync start --server dist --no-ui --no-notify --files dist/",
     "watch:js": "npm run js:dev -- --watch",
     "watch:css": "npm run styles:dev -- --watch --log",
