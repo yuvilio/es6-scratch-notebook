@@ -22,3 +22,8 @@ a {
   color: var(--cinnabar-red);
   text-decoration: none;
 }
+
+/* wrap lines to keep all code visible */
+pre>code[class*="language-"], pre[class*="language-"] {
+  white-space: pre-wrap;
+}

@@ -1,5 +1,5 @@
 ---
-title: Ex 01
+title: Ex 02
 collection: posts
 layout: pages/functionaljs/01/002-example.nunj
 tags: dataviz, mneumonics

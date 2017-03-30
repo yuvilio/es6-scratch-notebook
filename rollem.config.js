@@ -39,6 +39,23 @@ export default [
       dest: './dist/assets/js/functionaljs/01/002-example.js',
       moduleName: '002-example-js'
     }
-  )
+  ),
+  Object.assign(
+    baseProps,
+    {
+      entry: './assets/js/basic-es6/01/001-init.js',
+      dest: './dist/assets/js/basic-es6/01/001-init.js',
+      moduleName: 'basic-es6-001-init'
+    }
+  ),
+  Object.assign(
+    baseProps,
+    {
+      entry: './assets/js/basic-es6/01/002-arrow.js',
+      dest: './dist/assets/js/basic-es6/01/002-arrow.js',
+      moduleName: 'basic-es6-002-arrow'
+    }
+  ),
+
 
 ]
