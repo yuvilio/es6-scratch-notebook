@@ -3,6 +3,8 @@ import babel from 'rollup-plugin-babel' // "using Babel to transpile your ES6/7 
 import resolve from 'rollup-plugin-node-resolve' // "Locate modules using the Node resolution algorithm, for using third party modules in node_modules"
 import commonjs from 'rollup-plugin-commonjs'
 
+// TODO: break up the config to different rollem modules, so not generating a lot of bundles on each refresh 
+
 var baseProps = {
   format: 'iife',
   plugins: [
