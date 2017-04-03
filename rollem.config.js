@@ -24,8 +24,8 @@ var baseProps = {
   ],
 };
 
-//which bundles currently building
+//which bundles currently building. need to rebuild a bundle? add it
+// to one of the modules and importithere to build 
 import { bundles } from './lib/rollem/basic-es6/basic-es6-001.js';
-bundles.forEach( bundle => Object.assign(baseProps, bundle)  )
-
-export default bundles
+let currentBundles = bundles.map( bundle => Object.assign(baseProps, bundle)  )
+export default currentBundles
