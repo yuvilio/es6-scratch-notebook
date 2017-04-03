@@ -98,7 +98,7 @@ console.log( getCostWithVAT(10) ) //10.8
 
 * I'm not sure how many parameters I might receive. can i just group them in an array?
 
-Yeah you can use the [spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) (`...`) operator in your parameters list
+Yeah you can use the [rest](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) (`...`) operator in your parameters list
 
 <pre><code class="language-js">
 // after first arg, rest will go into crew array
@@ -106,4 +106,4 @@ let getCrewManifest = (ship, ...crew) => ship + ':' + crew.join(', ')
 console.log(getCrewManifest('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')) //  SES Heinz 57:Stellar, Wilco, Dorf
 </code></pre>
 
-This function can now take various numbers of arguments rather than a specific number . 
+This function can now take various numbers of arguments rather than a specific number .
