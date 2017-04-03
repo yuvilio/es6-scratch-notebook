@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function (event) {
-  console.log('here is 002-arrow ')
+  console.log('here is 002-arrow')
 
   let getPrice = () => 2.45 // shorthand for anonmyous function. no 'function' wrapping or 'returns'
     // says this function returns 2.45
@@ -38,4 +38,18 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   let getPrice2 = () => 2.45
   console.log('getPrice2.hasOwnProperty(\'prototype\')', getPrice2.hasOwnProperty('prototype')) // chrome might still show true but that may be in flux. try it in a node console and you'll get false
+
+  let getShippedItems = (count = 500) => 'items shipped:' + count
+  console.log(getShippedItems()) // 'items shipped:500'
+
+  // filling in some parameters
+  let getShippedItemsLabel = (count = 500, itemType = 'orange') => count + ', ' + itemType
+  console.log(getShippedItemsLabel(undefined, 'kiwi')) // '500, kiwi'
+
+  let getCostWithVAT = (price, vatTax = price * 0.08) => price + vatTax
+  console.log(getCostWithVAT(10)) // 10.8
+
+  // after first arg, rest will go into crew array
+  let getCrewManifest = (ship, ...crew) => ship + ':' + crew.join(', ')
+  console.log(getCrewManifest('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')) //  SES Heinz 57:Stellar, Wilco, Dorf
 })

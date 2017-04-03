@@ -66,3 +66,44 @@ invoiceProcessArrow.process() //context o the code (document object or Window)
 </code></pre>
 
 * no more re-assigning the 'this' context via bind/call/apply
+
+
+* need default value for your parameters? te parameter is not defined? That works now: .just add = and the the defaultvalue:
+
+<pre><code class="language-js">
+let getShippedItems = (count = 500) => 'items shipped:' + count
+console.log(getShippedItems()) // 'items shipped:500'
+
+</code></pre>
+
+
+* what if i have a value to pass for some but want to use the default for others?
+
+You can pass `undefined` for the others  to use the default values
+<pre><code class="language-js">
+let getShippedItemsLabel = (count = 500, itemType = 'orange') => count + ', ' + itemType
+console.log(getShippedItemsLabel(undefined, 'kiwi')) // '500, kiwi'
+
+</code></pre>
+
+
+* can i use one parameter to figure value of another paramer in the default?
+
+<pre><code class="language-js">
+// example where one parameter (vatTax),  relies on value of other parameter
+let getCostWithVAT = ( price, vatTax = price * 0.08 ) => price + vatTax
+console.log( getCostWithVAT(10) ) //10.8
+</code></pre>
+
+
+* I'm not sure how many parameters I might receive. can i just group them in an array?
+
+Yeah you can use the [spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters) (`...`) operator in your parameters list
+
+<pre><code class="language-js">
+// after first arg, rest will go into crew array
+let getCrewManifest = (ship, ...crew) => ship + ':' + crew.join(', ')
+console.log(getCrewManifest('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')) //  SES Heinz 57:Stellar, Wilco, Dorf
+</code></pre>
+
+This function can now take various numbers of arguments rather than a specific number . 
