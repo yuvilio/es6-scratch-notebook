@@ -107,3 +107,30 @@ console.log(getCrewManifest('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')) //  SES
 </code></pre>
 
 This function can now take various numbers of arguments rather than a specific number .
+
+* is the rest operator an array?
+
+yep:
+<pre><code class="language-js">
+let getCrewManifest2 = (ship, ...crew) => crew instanceof Array //true
+console.log(getCrewManifest2('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')
+</code></pre>
+
+
+* what if my function takes individual arguments but i have them in an array. do i have to separately refer to each item?
+
+You can use the [spread ... operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator) (it's also ... but this time used in the call, not the function signature)
+
+<pre><code class="language-js">
+let ranks = [32, 2, 55, 23]
+let maximumRank = Math.min(...ranks) // spread (splits to individual arguments)
+console.log(maximumRank) // 2
+
+// handy when you need to pass individual args but they're in an array
+let crewProfile = (name, rank) => 'Crewman: ' + name + ' Rank: ' + rank
+let crewPersonnelEntry = ['Stellar', 'Executive Officer']
+console.log(crewProfile(...crewPersonnelEntry)) // Crewman: Stellar Rank: Executive Officer
+
+// note that spread flattens arrays (rather than creating arrays of arrays)
+console.log(['a', ...'hello']) // ["a", "h", "e", "l", "l", "o"]
+</code></pre>

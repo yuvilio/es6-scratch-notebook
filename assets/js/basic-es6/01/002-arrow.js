@@ -52,4 +52,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
   // after first arg, rest will go into crew array
   let getCrewManifest = (ship, ...crew) => ship + ':' + crew.join(', ')
   console.log(getCrewManifest('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf')) //  SES Heinz 57:Stellar, Wilco, Dorf
+
+  let getCrewManifest2 = (ship, ...crew) => crew instanceof Array // true
+  console.log(getCrewManifest2('SES Heinz 57', 'Stellar', 'Wilco', 'Dorf'))
+
+  let ranks = [32, 2, 55, 23]
+  let maximumRank = Math.min(...ranks) // spread (splits to individual arguments)
+  console.log(maximumRank) // 2
+
+  // handy when you need to pass individual args but they're in an array
+  let crewProfile = (name, rank) => 'Crewman: ' + name + 'Rank: ' + rank
+  let crewPersonnelEntry = ['Stellar', 'Executive Officer']
+  console.log(crewProfile(...crewPersonnelEntry)) // crewProfile(..crewPersonnelEntry)
+
+  // note that spread flattens arrays (rather than creating arrays of arrays)
+  console.log(['a', ...'hello']) // ["a", "h", "e", "l", "l", "o"]
 })
