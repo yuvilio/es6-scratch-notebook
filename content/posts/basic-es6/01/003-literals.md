@@ -157,3 +157,108 @@ They do. offering [get](https://developer.mozilla.org/en-US/docs/Web/JavaScript/
   console.log(crew.current) // 1: Wilco
 }
 </code></pre>
+
+
+iterate through array?
+
+You can use the [for..of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of) loop
+
+<pre><code class="language-js">
+
+// can use a dynamic field name with getters and setters
+let crew = ['Stellar', 'Dorf', 'Wilco']
+// iterate through array
+for (let crewman of crew) {
+  console.log(crewman)
+} // Stellar , Dorf , Wilco
+</code></pre>
+
+* need an index? you can just set one:
+
+<pre><code class="language-js">
+let crew = ['Stellar', 'Dorf', 'Wilco']
+// want to use an index? set one
+let i = 0
+for (let crewman of crew) {
+  i++
+  console.log(i + ': ' + crewman)
+} // 1: Stellar, 2: Dorf, 3: Wilco
+</code></pre>
+
+* need to interpolate a variable into a string? use backtick [template strings](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+
+<pre><code class="language-js">
+
+{
+  // use backticks for template strings and ${} to interpolate variables
+  let thanks = 'Thank You, Thank YOU, thank you thank you thank you'
+  console.log(`I'd like to thank each and every one of you. So.. ${thanks}`)
+    // I'd like to thank each and every one of you. So.. Thank You, Thank YOU, thank you thank you thank you
+}
+
+</code></pre>
+
+* need to break the string up to different lines? just hit enter. no quotes or spacial charchters needed:
+
+<pre><code class="language-js">
+
+{
+  // a nice thing about templates literals is letting you break up a string to many lines without fuss
+  let thanks = `Thank You, Thank YOU, Thank you...
+  thank you thank you thank you
+  thank you thank _you`
+  console.log(`I'd like to thank _each_ and every one of you:
+  So.. ${'ahem..: ' + thanks}`) // expressions are allowd in the interpolation
+  // I'd like to thank _each_ and every one of you:
+  //     So.. ahem..: Thank You, Thank YOU, Thank you...
+  //     thank you thank you thank you
+  //     thank you thank _you
+}
+
+</code></pre>
+
+* what if i want to be able to process the template literal. That is i want to break it up to strings and where the interpoation happens
+
+You can use [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
+
+
+<pre><code class="language-js">
+
+{
+  let thankCrewTags = (segments) => console.log(segments) // ["I'd like to thank"]
+  thankCrewTags`I'd like to thank` // invoke the tag (function) passing it the template string (no parentheseses)
+}
+</code></pre>
+
+so if you just pass the plain string, you get it in an array. not too interesting just yet. Let's add some interpolation
+
+
+<pre><code class="language-js">
+
+{
+  let thankCrewTags = (segments, ...values) => console.log(segments, values)
+    //you get two arrays, the string segments (non-interpolated) and the values (interpolated). in separate arrays
+    // ["I'd like to thank. ", ". Ahem, so ", "", raw: Array(3)] (2)
+    // ["each and every one of you", "Thank you,.. Thank you.. thank you"]
+  let thankee = 'each and every one of you'
+  let firsts = 'Thank you,.. Thank you.. thank you'
+  thankCrewTags`I'd like to thank. ${thankee}. Ahem, so ${firsts}`
+}
+</code></pre>
+
+
+excellent. now we can process the pieces in a more custom way with this tag. simply process the pieces in your tag literal function and return the constructed result
+
+<pre><code class="language-js">
+{
+  let thankCrewTags = (segments, ...values) => {
+    let overture = segments[0]
+
+    return overture + '. ahem: ' + values[0]
+  }
+
+  let thankee = 'each and every one of you'
+  let firsts = 'Thank you,.. Thank you.. thank you'
+  console.log(thankCrewTags`I'd like to thank. ${thankee} ${firsts}`)
+}
+</code></pre>

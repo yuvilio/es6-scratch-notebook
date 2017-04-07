@@ -112,4 +112,71 @@ document.addEventListener('DOMContentLoaded', function (event) {
     crew[field] = 'Wilco'
     console.log(crew.current) // 1: Wilco
   }
+
+  {
+    let crew = ['Stellar', 'Dorf', 'Wilco']
+    // iterate through array
+    for (let crewman of crew) {
+      console.log(crewman)
+    } // Stellar , Dorf , Wilco
+  }
+
+  {
+    let crew = ['Stellar', 'Dorf', 'Wilco']
+    // want to use an index? set one
+    let i = 0
+    for (let crewman of crew) {
+      i++
+      console.log(i + ': ' + crewman)
+    } // 1: Stellar, 2: Dorf, 3: Wilco
+  }
+
+  {
+    // use backticks for template strings and ${} to interpolate variables
+    let thanks = 'Thank You, Thank YOU, thank you thank you thank you'
+    console.log(`I'd like to thank each and every one of you. So.. ${thanks}`)
+      // I'd like to thank each and every one of you. So.. Thank You, Thank YOU, thank you thank you thank you
+  }
+
+  {
+    // a nice thing about templates literals is letting you break up a string to many lines without fuss
+    let thanks = `Thank You, Thank YOU, Thank you...
+    thank you thank you thank you
+    thank you thank _you`
+    console.log(`I'd like to thank _each_ and every one of you:
+    So.. ${'ahem..: ' + thanks}`) // expressions are allowd in the interpolation
+    // I'd like to thank _each_ and every one of you:
+    //     So.. ahem..: Thank You, Thank YOU, Thank you...
+    //     thank you thank you thank you
+    //     thank you thank _you
+  }
+
+  {
+    let thankCrewTags = (segments) => console.log(segments) // ["I'd like to thank"]
+    thankCrewTags`I'd like to thank` // invoke the tag (function) passing it the template string (no parentheseses)
+  }
+
+  console.log('here')
+
+  {
+    let thankCrewTags = (segments, ...values) => console.log(segments, values)
+      // you get two arrays, the string segments (non-interpolated) and the values (interpolated). in separate arrays
+      // ["I'd like to thank. ", ". Ahem, so ", "", raw: Array(3)] (2)
+      // ["each and every one of you", "Thank you,.. Thank you.. thank you"]
+    let thankee = 'each and every one of you'
+    let firsts = 'Thank you,.. Thank you.. thank you'
+    thankCrewTags`I'd like to thank. ${thankee}. Ahem, so ${firsts}`
+  }
+
+  {
+    let thankCrewTags = (segments, ...values) => {
+      let overture = segments[0]
+
+      return overture + '. ahem: ' + values[0]
+    }
+
+    let thankee = 'each and every one of you'
+    let firsts = 'Thank you,.. Thank you.. thank you'
+    console.log(thankCrewTags`I'd like to thank. ${thankee} ${firsts}`)
+  }
 })
