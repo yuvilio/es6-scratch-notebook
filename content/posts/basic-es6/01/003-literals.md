@@ -262,3 +262,106 @@ excellent. now we can process the pieces in a more custom way with this tag. sim
   console.log(thankCrewTags`I'd like to thank. ${thankee} ${firsts}`)
 }
 </code></pre>
+
+destructuring
+=============
+
+[destructuring](https://ponyfoo.com/articles/es6-destructuring-in-depth) has us breaking down a structure looking at it's parentheseses
+
+
+* how can i quickly assign a bunch of variables from an array?
+
+you can destructure the array by grouping the variables into an array and they'll get assigned pieces of the array you want. including new arrays with the ...
+
+<pre><code class="language-js">
+
+{
+  // you can skip elements when destructuring. use commas to move to the next element
+  let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+  let [, patient, ...staff] = medbayOccupants
+  console.log(patient) // Stellar ["Jebba", "Doc"]
+  staff.push('')
+}
+</code></pre>
+
+
+<pre><code class="language-js">
+{
+  // you can skip elements when destructuring. use commas to move to the next element
+  // you can add default values in case the array doesn't provide ones at that index spot
+  let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+  let [visitor, patient, , , maint = 'Janitor'] = medbayOccupants
+  console.log(patient, maint) // Stellar Janitor
+}
+</code></pre>
+
+<pre><code class="language-js">
+{
+  // you can destructure an array within an array. it's recursive. just use an array destructure
+  let medbayOccupants = ['Wilco', 'Stellar', ['Jebba', 'Doc']]
+  let [visitor, , [researcher, doctor]] = medbayOccupants
+  console.log(researcher) // Jebba
+}
+</code></pre>
+
+
+<pre><code class="language-js">
+{
+  // functions can also destructure passed input in their parameters. here we grab parameters from within a passed in array
+  let medbayReport = ([visitor, patient, ...others]) => 'Current patient: ' + patient
+  let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+  console.log(medbayReport(medbayOccupants))
+}
+</code></pre>
+
+
+<pre><code class="language-js">
+{
+  let medbay = {
+    patient: 'Stellar',
+    visitor: 'Wilco',
+    report () {
+      return `patient ${this.patient} treated with visitor ${this.visitor} visiting `
+    }
+  }
+
+  // want to map the properties to different names? use propname: varname in the descturturing
+  let {patient: currentPatient, visitor: currentVisitor} = medbay
+  console.log(`${currentPatient} , ${currentVisitor}`) // Stellar , Wilco
+}
+</code></pre>
+
+
+
+<pre><code class="language-js">
+
+{
+  let medbay = {
+    patient: 'Stellar',
+    visitor: 'Wilco',
+    report () {
+      return `patient ${this.patient} treated with visitor ${this.visitor} visiting `
+    }
+  }
+
+  // the variables used in destructuring can be declared separately
+  // just wrap the destructuing expression in () so that the compiler doesn't get confused by the {} to be code blocks
+  // rather what it is (an object)
+  let currentPatient, currentVisitor
+  ({patient: currentPatient, visitor: currentVisitor} = medbay)
+  console.log(`${currentPatient} , ${currentVisitor}`)
+}
+
+</code></pre>
+
+<pre><code class="language-js">
+
+{
+  // you can destructure an array in a for loop to assign variables it's parts from the get go
+  let partners = [['Wilco', 'Stellar'], ['Dorf', 'Kielbassa']]
+  for (let [partnerA, partnerB] of partners) {
+    console.log(` ${partnerA} with ${partnerB}`)
+  }
+}
+
+</code></pre>

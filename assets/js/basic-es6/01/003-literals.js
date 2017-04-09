@@ -179,4 +179,99 @@ document.addEventListener('DOMContentLoaded', function (event) {
     let firsts = 'Thank you,.. Thank you.. thank you'
     console.log(thankCrewTags`I'd like to thank. ${thankee} ${firsts}`)
   }
+
+  {
+    // destructure an array by assigning each item to a variable
+    // notice we can capture some using the spread with a variable
+    let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+    let [visitor, patient, ...staff] = medbayOccupants
+    console.log(patient, staff) // Stellar ["Jebba", "Doc"]
+    visitor.concat('') // trivial
+  }
+
+  {
+    // you can skip elements when destructuring. use commas to move to the next element
+    // you can add default values in case the array doesn't provide ones at that index spot
+    let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+    let [visitor, patient, , , maint = 'Janitor'] = medbayOccupants
+    console.log(patient, maint) // Stellar Janitor
+    visitor.concat('')
+  }
+
+  {
+    // you can destructure an array within an array. it's recursive. just use an array destructure
+    let medbayOccupants = ['Wilco', 'Stellar', ['Jebba', 'Doc']]
+    let [visitor, , [researcher, doctor]] = medbayOccupants
+    console.log(researcher) // Jebba
+    visitor.concat('')
+    doctor.concat('')
+  }
+
+  {
+    // functions can also destructure passed input in their parameters. here we grab parameters from within a passed in array
+    let medbayReport = ([visitor, patient, ...others]) => 'Current patient: ' + patient
+    let medbayOccupants = ['Wilco', 'Stellar', 'Jebba', 'Doc']
+    console.log(medbayReport(medbayOccupants))
+  }
+
+  {
+    // destructuring an object
+    let medbay = {
+      patient: 'Stellar',
+      visitor: 'Wilco',
+      report () {
+        return `patient ${this.patient} treated with visitor ${this.visitor} visiting `
+      }
+    }
+
+    // you don't have to list every property you want to grab
+    let {patient, visitor} = medbay
+    console.log(`${patient} , ${visitor}`) // Stellar , Wilco
+
+    console.log(medbay.report()) // patient Stellar treated with visitor Wilco visiting
+  }
+
+  {
+    let medbay = {
+      patient: 'Stellar',
+      visitor: 'Wilco',
+      report () {
+        return `patient ${this.patient} treated with visitor ${this.visitor} visiting `
+      }
+    }
+
+    // want to map the properties to different names? use propname: varname in the descturturing
+    let {patient: currentPatient, visitor: currentVisitor} = medbay
+    console.log(`${currentPatient} , ${currentVisitor}`) // Stellar , Wilco
+  }
+
+  {
+    let medbay = {
+      patient: 'Stellar',
+      visitor: 'Wilco',
+      report () {
+        return `patient ${this.patient} treated with visitor ${this.visitor} visiting `
+      }
+    }
+
+    // the variables used in destructuring can be declared separately
+    // just wrap the destructuing expression in () so that the compiler doesn't get confused by the {} to be code blocks
+    // rather what it is (an object)
+    let currentPatient, currentVisitor
+    ({patient: currentPatient, visitor: currentVisitor} = medbay)
+    console.log(`${currentPatient} , ${currentVisitor}`)
+  }
+
+  {
+    let [start, , end] = 'a-z'
+    console.log(`${start} - ${end}`)
+  }
+
+  {
+    // you can destructure an array in a for loop to assign variables it's parts from the get go
+    let partners = [['Wilco', 'Stellar'], ['Dorf', 'Kielbassa']]
+    for (let [partnerA, partnerB] of partners) {
+      console.log(` ${partnerA} with ${partnerB}`)
+    }
+  }
 })
