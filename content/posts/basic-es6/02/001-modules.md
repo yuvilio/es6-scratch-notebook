@@ -32,7 +32,67 @@ import { hello } from './modules/test-module.js'
 </code></pre>
 
 
+* need to export multiple things? no problem. add a new export for each item you want. need to [import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) them with different names than the one the module uses? just use an `as` alias
 
+<pre><code class="language-js">
+// './modules/002-multiple-exports.js'
+// a module can export a bunch of object/functions,..
+export let matineeMovie = 'Space Quest 5'
+export let mainMovie = 'Tango & Cash 27'
+
+</code></pre>
+
+<pre><code class="language-js">
+// you can import multple exported things from a module
+// you can also rename them using 'as' if that helps
+import { matineeMovie, mainMovie as featureFilm } from './modules/002-multiple-exports.js'
+
+console.log(`playing today  first is ${matineeMovie} and then ${featureFilm}`) // playing today  first is Space Quest 5 and then Tango & Cash 27
+</code></pre>
+
+
+* you can use `default` to designate the main thing a module exports:
+
+<pre><code class="language-js">
+// './modules/003-default-export.js'
+// a module can have one default export
+// handy when a module has a main functionality it provides
+export let currentFlick = 'Tango & Cash 27'
+let price = '12 Buckzoids'
+export default price
+
+</code></pre>
+
+
+<pre><code class="language-js">
+// you can import the designated default exported item from a module . no curly brackets to indicated you're exporting
+// the default . also the naming is up to you:
+import flickPrice from './modules/003-default-export.js'
+console.log(`current flick price: ${flickPrice}`) //current flick price: 12 Buckzoids
+
+//could have also import { default as flickPrice, currentFlick } , for multiple imports including the default one
+
+</code></pre>
+
+
+
+
+<pre><code class="language-js">
+// './modules/004-wildcard-object-import.js'
+
+export let currentFlick = 'Tango & Cash 27'
+export let price = '12 Buckzoids'
+
+// could have also done the export at the end: export { currentFlick, price }
+</code></pre>
+
+<pre><code class="language-js">
+
+// you can import everything a module exports into an object , using the *
+import * as cinemaNowPlaying from './modules/004-wildcard-object-import.js'
+
+console.log(`now playing ${cinemaNowPlaying.currentFlick} for only ${cinemaNowPlaying.price}!`) // now playing Tango & Cash 27 for only 12 Buckzoids!
+</code></pre>
 
 <!---
 <pre><code class="language-js">
