@@ -20,10 +20,11 @@
     "lint:js": {
       "patterns": [
         "assets/js",
-        "assets/js/functionaljs/01/",
-        "assets/js/basic-es6/01/"
+        "assets/js/basic-es6/01/",
+        "assets/js/basic-es6/02/",
+        "assets/js/react-comp/03/components/"
       ],
-      "extensions": "js",
+      "extensions": ["js", "jsx"],
       "ignore": "",
       "quiet": false
     },
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "watch": "npm-watch",
-    "lint:js": "standard assets/js/**/*.js",
+    "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
     "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "start": "npm run watch:dev",
