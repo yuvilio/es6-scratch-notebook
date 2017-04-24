@@ -1,6 +1,7 @@
 // 001-heyapp2.jsx
 import React from 'react'
 
+// component class
 class Greeter extends React.Component {
   render () {
     // the component itself  is written in JSX (javascript expression)
@@ -8,6 +9,7 @@ class Greeter extends React.Component {
     return (
       <div>
         <h1>Greetings Mananan</h1>
+        <p>I'll get the clay bowl and wooden spoon</p>
       </div>
     )
   }
