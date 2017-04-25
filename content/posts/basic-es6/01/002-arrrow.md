@@ -1,5 +1,5 @@
 ---
-title: 002 arrow
+title: basic es6 - 002 arrow
 collection: posts
 layout: pages/basic-es6/01/002-arrow.nunj
 excerpt: A

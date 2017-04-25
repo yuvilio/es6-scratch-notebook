@@ -1,5 +1,5 @@
 ---
-title: 002 classes
+title: basic es6 - 002 classes
 collection: posts
 layout: pages/basic-es6/02/002-classes.nunj
 excerpt:

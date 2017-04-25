@@ -1,5 +1,5 @@
 ---
-title: 001 modules
+title: basic es6 - 001 modules
 collection: posts
 layout: pages/basic-es6/02/001-modules.nunj
 excerpt:

@@ -1,5 +1,5 @@
 ---
-title: 003 literals
+title: basic es6 - 003 literals
 collection: posts
 layout: pages/basic-es6/01/003-literals.nunj
 excerpt:

@@ -1,5 +1,5 @@
 ---
-title: 001 init
+title: basic es6 - 001 init
 collection: posts
 layout: pages/basic-es6/01/001-init.nunj
 excerpt: Is visualization just another shortcut to access much data?

@@ -1,5 +1,5 @@
 ---
-title: 001 start
+title: react-comp - 001 start
 collection: posts
 layout: pages/react-comp/03/001-start.nunj
 excerpt:
@@ -21,7 +21,7 @@ let's attach to it and render a simply html element
   // let's render a simple html element onto a react root node with jsx notation
   const root = document.querySelector('#heyApp01')
   ReactDOM.render(
-    <h1>Hey there!</h1>,
+    <h1 blaProp='blee'>Hey there!</h1>,
     root
   )
 }
@@ -117,6 +117,55 @@ let's hook it into this component holder:
 We can guess why you'd want a compnent to be available in a few ways. If it's all a conduit for rendering, a function might make more sense.  If you need to use more storage machinery , a class that inherits methods and can have more methods added to it might make more sense. the render method can be used to display
 
 
+* that jsx stuff is so strange looking  it looks like you have html right there in the javascript. how is that possible?
+
+Well, remember a few things. you're running this code on top of a transpiler (babel, traceur, ..). so that's not the final state of the javascript before it hits the browser.  First noticed that, as it is js allows expressions close to  this already, so it's not a stretch. the () (`parentheses`) allows more liberal expressions
+
+
+<pre><code class="language-js">
+var f = () => { return (
+"this expression",
+is,
+fine
+) } // no complaints from the js interpreter
+
+var g = () => { return (
+"this expression \
+ter"
+) } // another one using multilined strings
+
+var h = () => { return (
+"<h1> \
+hey there \
+</h1>"
+) } // as is this
+</code></pre>
+
+so as it is, javascript allows something close to jsx already. it's just that it still prefers having delimeters like quotes and \ in use with it. React adds some parsing sugar on top to declutter the js from those distracting elements allowing the expression to at once resemble js (we'll see more on that later) and markup at the same time.
+
+so it's not a so have a look at an ealier example above. here's what the [jsx compiles to](https://facebook.github.io/react/docs/jsx-in-depth.html  o) by react + transpiler:
+
+<pre><code class="language-js">
+
+// look at me , i'm clean js inside a javascript function:
+  ReactDOM.render(
+    <h1 blaProp='blee'>Hey there!</h1>,
+    root
+  )
+</code></pre>
+
+now have a look at the [resulting js](/assets/js/react-comp/03/001-start.js) :
+
+<pre><code class="language-js">
+// now i resemble a bunch of createElement (for the element <tags>) and {} (for the propperties they have)
+index$2.render(react.createElement(
+  'h1',
+  { blaProp: 'blee' },
+  'Hey there!'
+), root);
+</code></pre>
+
+the transpiler parsed that js
 <!---
 <pre><code class="language-js">
 
