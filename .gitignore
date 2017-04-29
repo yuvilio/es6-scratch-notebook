@@ -6,4 +6,8 @@ node_modules/
 _layouts/test
 content/test
 content/uploads
+
+composer.lock
+vendor/
+
 npm-debug.log
