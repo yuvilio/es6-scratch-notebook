@@ -21,7 +21,7 @@ let's attach to it and render a simply html element
   // let's render a simple html element onto a react root node with jsx notation
   const root = document.querySelector('#heyApp01')
   ReactDOM.render(
-    <h1 blaProp='blee'>Hey there!</h1>,
+    <h1 name='Nia'>Hey there!</h1>,
     root
   )
 }
@@ -148,9 +148,10 @@ so it's not a so have a look at an ealier example above. here's what the [jsx co
 <pre><code class="language-js">
 
 // look at me , i'm clean js inside a javascript function:
-  ReactDOM.render(
-    <h1 blaProp='blee'>Hey there!</h1>,
-    root
+    ReactDOM.render(
+      <h1 name='Nia'>Hey there!</h1>,
+      root
+    )
   )
 </code></pre>
 
@@ -158,14 +159,56 @@ now have a look at the [resulting js](/assets/js/react-comp/03/001-start.js) :
 
 <pre><code class="language-js">
 // now i resemble a bunch of createElement (for the element <tags>) and {} (for the propperties they have)
-index$2.render(react.createElement(
-  'h1',
-  { blaProp: 'blee' },
-  'Hey there!'
-), root);
+  index$2.render(react.createElement(
+    'h1',
+    { name: 'Nia' },
+    'Hey there!'
+  ), root);
 </code></pre>
 
-the transpiler parsed that js
+The transpiler parsed that js and turned it into more familiar js
+
+passing arguments
+===
+
+* Can we pass arguments to components?
+
+Sure. one approach is via attributes which get stored in `this.props` of that component object
+
+<pre><code class="language-js">
+// 003-props.jsx
+import React from 'react'
+
+export let Greeter = (props) => {
+  let name = props.name // would be this.props.name if using component class ratherh than function
+
+  // to use a javascript expression, place it in `{}`
+  return (
+    <div>
+      <h1>Greetings {name}</h1>
+      <p>I'll go feed the chickens</p>
+    </div>
+  )
+}
+
+</code></pre>
+
+<pre><code class="language-js">
+  ReactDOM.render(
+    <GreeterProps name='Wizard Mananan' />,
+    document.querySelector('#heyApp04')
+  )
+</code></pre>
+
+<pre><code class="language-html">
+<div id="heyApp04"></div>
+
+</code></pre>
+
+<div id="heyApp04"></div>
+
+* what if i want the component to have a default value in case i don't pass any arguments
+
 <!---
 <pre><code class="language-js">
 
