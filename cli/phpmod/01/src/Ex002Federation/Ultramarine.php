@@ -1,5 +1,4 @@
 <?php
-
 // Ultramarine.php
 
 namespace Ch01\Ex002Federation;

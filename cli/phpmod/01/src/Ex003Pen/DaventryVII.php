@@ -1,5 +1,4 @@
 <?php
-
 // Ch01/Ex003Pen/DaventryVII.php
 
 namespace Ch01\Ex003Pen;

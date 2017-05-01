@@ -1,5 +1,4 @@
 <?php
-
 // Ex004Trait/CervicCruiser.php
 
 namespace Ch01\Ex004Trait;
