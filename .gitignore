@@ -11,3 +11,4 @@ composer.lock
 vendor/
 
 npm-debug.log
+.php_cs.cache

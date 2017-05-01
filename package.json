@@ -38,6 +38,15 @@
       "extensions": "css",
       "ignore": "",
       "quiet": false
+    },
+    "lint:php": {
+      "patterns": [
+        "cli/phpmod/*/*",
+        "cli/phpmod/*/src/*"
+      ],
+      "extensions": ["php"],
+      "ignore": "",
+      "quiet": false
     }
   },
   "scripts": {
@@ -45,6 +54,8 @@
     "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
     "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/*.css",
     "lint:md": "remark --quiet content/**/*.md",
+    "lint:php": "phan --directory cli/phpmod/  --exclude-directory-list cli/phpmod/*/vendor",
+    "lint:php:php-cs-fixer": "php-cs-fixer -vv --dry-run --rules=@PSR1,@PSR2 fix cli/phpmod/",
     "start": "npm run watch:dev",
     "watch:dev": " npm run browsersync & npm run watch:lint:md & npm run watch:js  & npm run watch & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev",
     "browsersync": "browser-sync start --server dist --no-ui --no-notify --files dist/",
