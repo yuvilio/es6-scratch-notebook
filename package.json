@@ -11,7 +11,6 @@
     "gh-pages": "./node_modules/gh-pages/bin/gh-pages",
     "postcss": "./node_modules/postcss-cli/bin/postcss",
     "rollup": "./node_modules/rollup/bin/rollup",
-    "rollem": "./node_modules/rollem/bin/rollem.js",
     "stylelint": "./node_modules/stylelint/bin/stylelint.js",
     "standard": "./node_modules/standard/bin/cmd.js",
     "remark": "./node_modules/remark-cli/cli.js"
@@ -24,7 +23,10 @@
         "assets/js/basic-es6/02/",
         "assets/js/react-comp/03/components/"
       ],
-      "extensions": ["js", "jsx"],
+      "extensions": [
+        "js",
+        "jsx"
+      ],
       "ignore": "",
       "quiet": false
     },
@@ -44,7 +46,9 @@
         "cli/phpmod/*/*",
         "cli/phpmod/*/src/*"
       ],
-      "extensions": ["php"],
+      "extensions": [
+        "php"
+      ],
       "ignore": "",
       "quiet": false
     }
@@ -64,8 +68,8 @@
     "watch:lint:md": "npm run lint:md -- --watch",
     "styles:dev": "postcss -c postcss.dev.json",
     "styles": "postcss  -c postcss.prod.json",
-    "js:dev": "rollem",
-    "js": "rollem",
+    "js:dev": "rollup --config ./rollup.config.js",
+    "js": "rollup --config ./rollup.config.js",
     "templates:dev": "NODE_ENV=development DEBUG=metalsmith:* & node build/metalsmith.js",
     "templates": "NODE_ENV=production DEBUG=metalsmith:* & node build/metalsmith.js",
     "publish": "NODE_ENV=production gh-pages -d dist -b gh-pages",
@@ -137,8 +141,7 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "rollem": "^1.11.0",
-    "rollup": "^0.39.2",
+    "rollup": "^0.47.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-node-globals": "^1.1.0",
@@ -153,7 +156,8 @@
     "prismjs": "^1.6.0",
     "remark-cli": "^3.0.0",
     "remark-lint": "^6.0.0",
-    "remark-preset-lint-recommended": "^2.0.0"
+    "remark-preset-lint-recommended": "^2.0.0",
+    "uglify-es": "^3.0.28"
   },
   "browserlist": [
     "last 2 versions",
