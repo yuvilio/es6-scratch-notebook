@@ -9,7 +9,7 @@ excerpt: A
 [Arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 ==============
 
-shorthand for a function
+## shorthand for a function
 <pre><code class="language-js">
 let getPrice = () => 2.45 // shorthand for anonmyous function. no 'function' wrapping or 'returns'
   // says this function returns 2.45

@@ -8,7 +8,7 @@ const defaultConfig = {
 }
 
 //currently generated js files (switch to others as needed)
-import { activeConfigs, baseProps  } from './lib/rollup/functionaljs/functionaljs-001.js';
+import { activeConfigs, baseProps  } from './lib/rollup/react-comp/react-comp-001.js';
 
 activeConfigs.forEach(activeConfig => {
   Object.assign(activeConfig, defaultConfig)

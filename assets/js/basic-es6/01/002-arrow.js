@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (event) {
   console.log('here is 002-arrow')
 
+  console.log('shorthand for a function')
   let getPrice = () => 2.45 // shorthand for anonmyous function. no 'function' wrapping or 'returns'
     // says this function returns 2.45
   console.log(typeof getPrice) // its a 'function' type

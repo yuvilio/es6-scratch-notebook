@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom'
 // we'll keep all the imports of the examples up here for consistency
 import { Greeter as Greeter2 } from './components/001-heyapp2.jsx'
 import { Greeter as GreeterFunc } from './components/002-function-component.jsx'
-import { Greeter as GreeterProps } from './components/003-props.jsx'
+import { Greeter as GreeterPropsFunc, GreeterPropClass, GreeterDefaultProps,
+  GreeterFuncDefaultProps, GreeterFuncVariablePassed } from './components/003-props.jsx'
 
 document.addEventListener('DOMContentLoaded', function (event) {
   console.log('here is 001-start')
@@ -33,7 +34,32 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   // passing a parameter to a component, using an attribute
   ReactDOM.render(
-    <GreeterProps name='Wizard Mananan' />,
+    <GreeterPropsFunc name='Wizard Mananan' />,
     document.querySelector('#heyApp04')
+  )
+
+  ReactDOM.render(
+    <GreeterPropClass name='Nigel Rancid' />,
+    document.querySelector('#heyApp05')
+  )
+
+  // notice we're not passing the component the 'equipment' prop that it uses
+  // that's ok. it has a default
+  ReactDOM.render(
+    <GreeterDefaultProps />,
+    document.querySelector('#heyApp06')
+  )
+
+  ReactDOM.render(
+    <GreeterFuncDefaultProps />,
+    document.querySelector('#heyApp07')
+  )
+
+  // let's pass a property value from a variable this time, rather than a string. we'll use a javascript
+  // exppression in single brackets
+  let yourQuarters = 'Converted Cargo Hold'
+  ReactDOM.render(
+    <GreeterFuncVariablePassed quartersLocation={yourQuarters} />,
+    document.querySelector('#heyApp08')
   )
 })

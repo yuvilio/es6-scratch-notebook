@@ -207,7 +207,150 @@ export let Greeter = (props) => {
 
 <div id="heyApp04"></div>
 
-* what if i want the component to have a default value in case i don't pass any arguments
+* How does passing prop values work with classes?
+
+The props are available  in the instance object (`this`). Let's try passing them to the React commponent via attribute (name=) and pick it up from the object (this.name):
+
+<pre><code class="language-js">
+// 003-props.jsx
+class GreeterPropClass extends React.Component {
+  render () {
+    // props passed in by component are available to the instance object
+    let name = this.props.name
+
+    return (
+      <div>
+        <h1>DNA sequencing for: {name} </h1>
+        <p>*File Closed*</p>
+      </div>
+    )
+  }
+}
+
+export { GreeterPropClass }
+
+</code></pre>
+<pre><code class="language-js">
+ReactDOM.render(
+  <GreeterPropClass name='Nigel Rancid' />,
+  document.querySelector('#heyApp05')
+)
+</code></pre>
+
+<div id="heyApp05"></div>
+
+* what if i want the component to have some default props to use (even when the calling component doesn't pass any props).
+
+You can use [defaultProps](https://facebook.github.io/react/docs/react-without-es6.html#declaring-default-props)
+
+
+
+<pre><code class="language-js">
+// 003-props.jsx
+class GreeterDefaultProps extends React.Component {
+  render () {
+    // props passed in by component are available to the instance object
+    let equipment = this.props.equipment
+
+    return (
+      <div>
+        <h1>Stellar: you'll need this equipment:</h1>
+        <p>{equipment.join(', ')}</p>
+      </div>
+    )
+  }
+}
+
+// add default props as fallbacks to use
+// just add it as a property of the component itself
+GreeterDefaultProps.defaultProps = {
+  equipment: ['cyberjack', 'headset']
+}
+</code></pre>
+
+<pre><code class="language-js">
+// notice we're not passing the component the 'equipment' prop that it uses
+// that's ok. it has a default
+ReactDOM.render(
+  <GreeterDefaultProps />,
+  document.querySelector('#heyApp06')
+)
+</code></pre>
+
+<div id="heyApp06"></div>
+
+Notice that despite not passing any props in our component, the equipment variable was populated ("cyberjack, headset"), thanks to defaultProps object.
+
+* do defaultProps work with function components?
+
+They sure do. Rember that in js, functions are objects, simply add that defaultProps proprty to the function
+
+
+<pre><code class="language-js">
+// 003-props.jsx
+let GreeterFuncDefaultProps = (props) => {
+  // to use a javascript expression, place it in `{}`
+  return (
+    <div>
+      <h1>Now orbiting: </h1>
+      <p>{props.station}}</p>
+    </div>
+  )
+}
+
+GreeterFuncDefaultProps.defaultProps = {
+  station: 'Delta Burksilon V Colony'
+}
+
+export { GreeterFuncDefaultProps }
+</code></pre>
+
+<pre><code class="language-js">
+ReactDOM.render(
+  <GreeterFuncDefaultProps />,
+  document.querySelector('#heyApp07')
+)
+</code></pre>
+
+<div id="heyApp07"></div>
+
+
+My component is in javascript too, can i pass props that are in variables, rather than literals?
+
+Yep, simply use a javascript expression in single brackets
+
+<pre><code class="language-js">
+
+// 003-props.jsx
+let GreeterFuncVariablePassed = (props) => {
+  // to use a javascript expression, place it in `{}`
+  return (
+    <div>
+      <h1>Your quarters location: </h1>
+      <p>{props.quartersLocation}</p>
+    </div>
+  )
+}
+
+export { GreeterFuncVariablePassed }
+
+</code></pre>
+
+<pre><code class="language-js">
+
+  // let's pass a property value from a variable this time, rather than a string. we'll use a javascript
+  // exppression in single brackets
+  let yourQuarters = 'Converted Cargo Hold'
+  ReactDOM.render(
+    <GreeterFuncVariablePassed quartersLocation={yourQuarters} />,
+    document.querySelector('#heyApp08')
+  )
+</code></pre>
+
+<div id="heyApp08"></div>
+
+
+The passed in `yourQuarters` variable rendered fine in the component
 
 <!---
 <pre><code class="language-js">
