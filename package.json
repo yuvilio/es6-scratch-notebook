@@ -150,7 +150,7 @@
     "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2",
     "standard": "^9.0.2",
-    "tachyons": "^4.6.1"
+    "tachyons": "^4.8.0"
   },
   "dependencies": {
     "prismjs": "^1.6.0",
