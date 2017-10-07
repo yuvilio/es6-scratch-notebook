@@ -11,6 +11,7 @@ class FormGreet extends React.Component {
   }
 
   // let's define a function we'll use to handle a submit
+  // we'll call it from the jsx
   handleChange (event) {
     this.setState({value: event.target.value})
   }
