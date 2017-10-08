@@ -1,5 +1,5 @@
 {% set js_bundle = "/assets/js/basic-es6/01/002-arrow.js" %}
-{% extends "layout.nunj" %}
+{% extends "./pages/basic-es6/layout.nunj" %}
 
 {% block content %}
   <div class="main-wrap">

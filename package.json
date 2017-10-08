@@ -56,7 +56,7 @@
   "scripts": {
     "watch": "npm-watch",
     "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
-    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/*.css",
+    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/react-comp/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "lint:php": "phan --directory cli/phpmod/  --exclude-directory-list cli/phpmod/*/vendor",
     "lint:php:php-cs-fixer": "php-cs-fixer -vv --dry-run --rules=@PSR1,@PSR2 fix cli/phpmod/",
@@ -66,7 +66,7 @@
     "watch:js": "npm run js:dev -- --watch",
     "watch:css": "npm run styles:dev -- --watch --log",
     "watch:lint:md": "npm run lint:md -- --watch",
-    "styles:dev": "postcss -c postcss.dev.json",
+    "styles:dev": "postcss -c postcss.dev.json -o ./dist/react-comp/assets/css/main.css ./assets/css/react-comp/main.css",
     "styles": "postcss  -c postcss.prod.json",
     "js:dev": "rollup --config ./rollup.config.js",
     "js": "rollup --config ./rollup.config.js",
@@ -150,7 +150,8 @@
     "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2",
     "standard": "^9.0.2",
-    "tachyons": "^4.8.0"
+    "stylelint": "^8.2.0",
+    "react-comp": "^4.8.0"
   },
   "dependencies": {
     "prismjs": "^1.8.1",

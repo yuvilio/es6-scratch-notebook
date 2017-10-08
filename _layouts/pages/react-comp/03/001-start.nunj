@@ -1,5 +1,5 @@
 {% set js_bundle = "/assets/js/react-comp/03/001-start.js" %}
-{% extends "layout.nunj" %}
+{% extends "./pages/react-comp/layout.nunj" %}
 
 {% block content %}
   <div class="main-wrap">

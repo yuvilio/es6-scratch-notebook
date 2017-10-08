@@ -1,5 +1,5 @@
 {% set js_bundle = "/assets/js/tachyons/01/001-typography-basics.js" %}
-{% extends "layout.nunj" %}
+{% extends "./pages/tachyons/layout.nunj" %}
 
 {% block content %}
   <div class="main-wrap">
@@ -9,7 +9,7 @@
 
       <div class="content lh-copy">
         {{contents}}
-      </div>
+      </div>s
 
     </article>
 

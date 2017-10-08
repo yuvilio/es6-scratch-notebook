@@ -12,8 +12,6 @@
   "postcss-custom-properties": {
    "preserve": true
   },
-  "input": "./assets/css/main.css",
-  "output": "./dist/assets/css/main.css",
   "map": {
     "inline": false
   }
