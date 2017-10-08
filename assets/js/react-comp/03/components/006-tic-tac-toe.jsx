@@ -1,27 +1,15 @@
 import React from 'react'
 
 // a square will be one square in the tic tac toe board. we'll be able to set it's state to x or o
+// Square is a "controlled component". doesn't keep it's own state (parent component Board does that for it)
 class Square extends React.Component {
-  // we use he class constructor to initialize state
-  constructor (props) {
-    // since this is a subclass (of class React.Component)
-    // let's get the passed in properies processed by the superclass first and available
-    super(props)
-
-    // the state is private to this component
-    this.state = {
-      value: null // 'x' or 'o' . starts as neither
-    }
-  }
-
   render () {
     return (
-      // when clicking on these buttons (the scquare, a stte change happens)
-      // we defined value (above) as one part of the state that can change
-      // a click causes the component to merge it's current statue with this new state
-      // the component then calls it's render() again
-      <button className='square' onClick={() => this.setState({value: 'X'})}>
-        {this.state.value}
+
+      // since the state is managed by the parent (Board), a click is has the Square
+      // component call the onClick function that was passed by Board to it
+      <button className='square' onClick={() => this.props.onClick()}>
+        {this.props.value}
       </button>
     )
   }
@@ -29,8 +17,30 @@ class Square extends React.Component {
 
 // a board renders the squares
 class Board extends React.Component {
+  constructor (props) {
+    super(props)
+
+    // this component's stte is managing other components (Square ones)
+    this.state = {
+      squares: Array(9).fill(null)
+    }
+  }
+
+  // squares pass click events back to boroard to handle
+  handleClick (i) {
+    const squares = this.state.squares.slice() // copy the squares array instead of mutating the existing array
+    // we do this to prefer immutable changes (replacing objects) rather than mutatint the same object
+    squares[i] = 'x'
+    this.setState({squares: squares})
+  }
+
   renderSquare (i) {
-    return <Square value={i} />
+    // let's communicate state downloard to child Square component
+    // on
+    return <Square
+      value={this.state.squares[i]}
+      onClick={() => this.handleClick(i)}
+    />
   }
 
   render () {

@@ -68,5 +68,9 @@ tests
 
 lets look at the react tutorial [tic tac toe board example](https://reactjs.org/tutorial/tutorial.html#getting-started)
 
+We'll use a board component that will manage the state of square components in a state, and communicate that state change to the squares via their props.
+
+These are all components so they all have [props and context](https://github.com/facebook/react/blob/master/src/isomorphic/modern/class/ReactBaseClasses.js#L21-L28) and manages state using [setState](https://github.com/facebook/react/blob/master/src/isomorphic/modern/class/ReactBaseClasses.js#L57) 
+
 
 <div id="tictactoe"></div>
