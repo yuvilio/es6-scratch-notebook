@@ -19,9 +19,7 @@
     "lint:js": {
       "patterns": [
         "assets/js",
-        "assets/js/basic-es6/01/",
-        "assets/js/basic-es6/02/",
-        "assets/js/react-comp/03/components/"
+        "assets/js/css-guide/03/components/"
       ],
       "extensions": [
         "js",
@@ -56,7 +54,7 @@
   "scripts": {
     "watch": "npm-watch",
     "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
-    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/react-comp/*.css",
+    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/css-guide/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "lint:php": "phan --directory cli/phpmod/  --exclude-directory-list cli/phpmod/*/vendor",
     "lint:php:php-cs-fixer": "php-cs-fixer -vv --dry-run --rules=@PSR1,@PSR2 fix cli/phpmod/",
@@ -66,7 +64,7 @@
     "watch:js": "npm run js:dev -- --watch",
     "watch:css": "npm run styles:dev -- --watch --log",
     "watch:lint:md": "npm run lint:md -- --watch",
-    "styles:dev": "postcss -c postcss.dev.json -o ./dist/react-comp/assets/css/main.css ./assets/css/react-comp/main.css",
+    "styles:dev": "postcss -c postcss.dev.json -o ./dist/css-guide/assets/css/main.css ./assets/css/css-guide/main.css",
     "styles": "postcss  -c postcss.prod.json",
     "js:dev": "rollup --config ./rollup.config.js",
     "js": "rollup --config ./rollup.config.js",
@@ -150,14 +148,14 @@
     "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2",
     "standard": "^9.0.2",
-    "stylelint": "^8.2.0",
-    "react-comp": "^4.8.0"
+    "stylelint": "^8.2.0"
   },
   "dependencies": {
     "prismjs": "^1.8.1",
     "remark-cli": "^3.0.0",
     "remark-lint": "^6.0.0",
     "remark-preset-lint-recommended": "^2.0.0",
+    "tachyons": "^4.9.1",
     "uglify-es": "^3.1.3"
   },
   "browserlist": [
