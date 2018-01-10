@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "6.9.0"
+    "node": "8.8.1"
   },
   "bin": {
     "browser-sync": "./node_modules/browser-sync/bin/browser-sync.js",
@@ -19,7 +19,8 @@
     "lint:js": {
       "patterns": [
         "assets/js",
-        "assets/js/react-comp/03/components/"
+        "assets/js/css-guide/03/components/",
+        "assets/js/css-guide/07/"
       ],
       "extensions": [
         "js",
@@ -54,19 +55,19 @@
   "scripts": {
     "watch": "npm-watch",
     "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
-    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/react-comp/*.css",
+    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/css-guide/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "lint:php": "phan --directory cli/phpmod/  --exclude-directory-list cli/phpmod/*/vendor",
     "lint:php:php-cs-fixer": "php-cs-fixer -vv --dry-run --rules=@PSR1,@PSR2 fix cli/phpmod/",
     "start": "npm run watch:dev",
-    "watch:dev": " npm run browsersync & npm run watch:lint:md & npm run watch:js  & npm run watch & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev",
+    "watch:dev": " npm run browsersync & npm run watch:lint:md &  npm run watch & npm run copy:dev & npm run watch:css  & npm run lint:js & npm run templates:dev & npm run watch:js ",
     "browsersync": "browser-sync start --server dist --no-ui --no-notify --files dist/",
     "watch:js": "npm run js:dev -- --watch",
     "watch:css": "npm run styles:dev -- --watch --log",
     "watch:lint:md": "npm run lint:md -- --watch",
-    "styles:dev": "postcss ./assets/css/react-comp/main.css -o ./dist/react-comp/assets/css/main.css -c postcss.config.js",
+    "styles:dev": "postcss ./assets/css/css-guide/main.css -o ./dist/css-guide/assets/css/main.css -c postcss.config.js",
     "styles": "postcss  -c postcss.prod.json",
-    "js:dev": "rollup --config ./rollup.config.js",
+    "js:dev": "rollup --config ./rollup.config.js ",
     "js": "rollup --config ./rollup.config.js",
     "templates:dev": "NODE_ENV=development DEBUG=metalsmith:* & node build/metalsmith.js",
     "templates": "NODE_ENV=production DEBUG=metalsmith:* & node build/metalsmith.js",

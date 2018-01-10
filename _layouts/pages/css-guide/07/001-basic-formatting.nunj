@@ -1,5 +1,4 @@
-{# {% set js_bundle = "/assets/js/css-guide/07/001-basic-formatting.js" %}  #}
-
+{% set js_bundle = "/assets/js/css-guide/07/001-basic-formatting.js" %}
 {% extends "./pages/css-guide/layout.nunj" %}
 
 {% block content %}
