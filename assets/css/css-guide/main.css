@@ -8,3 +8,6 @@
 @import './_colors';
 
 @import 'misc/_type';
+
+@import 'posts/_001-basic-formatting';
+@import 'posts/_002-postcss-samples';

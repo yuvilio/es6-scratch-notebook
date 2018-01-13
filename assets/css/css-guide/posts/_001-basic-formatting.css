@@ -1,0 +1,27 @@
+
+.slug-001-basic-formatting {
+  /* */
+
+  .border-image-box {
+		border-width: 10px;
+		border-style: solid;
+
+    /*border-image:  url(/assets/img/css-guide/half-star.svg) 50 fill / 20px / 10px round;*/
+    border-image-source: url(/assets/img/css-guide/triangle.svg);
+    border-image-width: 2% 2%;
+    border-image-slice: 33% 33%;
+    border-image-repeat: round;
+  }
+
+  .border-image-box-gradient {
+		/* start with basic properties to give the border dimention and style */
+		border-width: 10px;
+		border-style: solid;
+
+		/* instead of a color, you can use border-image-source and add a gradient */
+    border-image-source: linear-gradient(lightgreen, darkgreen); /* add a gradient layer to it */
+    border-image-slice: 5;
+  }
+
+
+}
