@@ -82,4 +82,21 @@ as this plugin uses the postcss-simple-vars to implement it's functionality  */
 		}
 	}
 
+
+	/* last letter is transparency from 0 to F or 00 to ff in 6*/
+	.ex-007-rgba-hex-1 {
+		background-color: #9d90; /* completely transparent (0) . bg won't show*/
+	}
+
+	.ex-007-rgba-hex-2 {
+		background-color: #9d94; /* 0.26667 transparency*/
+	}
+
+	.ex-007-rgba-hex-3 {
+		background-color: #9d9a; /*.  0.66667 transparency*/
+	}
+
+	.ex-007-rgba-hex-4 {
+		background-color: #9d9f; /* completely opaque (1 transarency)*/
+	}
 }

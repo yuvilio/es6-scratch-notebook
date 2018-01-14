@@ -443,3 +443,27 @@ resulting genereated css from that mixin call:
   		/* use whatever other styles were passed in via {} as last argument */
   	}
 </code></pre>
+
+## postcss-color-hex-alpha
+
+the color spec 4 features the [#RRGGBBAA or #RGBA hex notation](https://drafts.csswg.org/css-color/#hex-notation) . with [postcss-color-hex-alpha](https://github.com/postcss/postcss-color-hex-alpha), you can use it now.
+
+
+<div class="pa2 w5 ex-007-rgba-hex-1">
+  #9d90 Transparency of 0 (background color doesn't show)
+</div>
+
+
+<div class="pa2 w5 ex-007-rgba-hex-2">
+#9d94 -   Transparency of 4  0.26667
+</div>
+
+
+<div class="pa2 w5 ex-007-rgba-hex-3">
+  #9d9a  - Transparency of a 0.66667
+</div>
+
+
+<div class="pa2 w5 ex-007-rgba-hex-4">
+  #9d9f - Transparency of f fully opaque (1)
+</div>

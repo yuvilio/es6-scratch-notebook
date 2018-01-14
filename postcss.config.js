@@ -9,6 +9,7 @@ const
     postcss_custom_properties=require("postcss-custom-properties"),
     postcss_custom_media=require("postcss-custom-media"),
     postcss_color_function=require("postcss-color-function")
+    postcss_color_hex_alpha=require("postcss-color-hex-alpha"),
     postcss_mixins=require('postcss-mixins'); /*  use postcss-simple-vars */
 
 
@@ -24,6 +25,7 @@ module.exports = {
         postcss_calc(),
         postcss_custom_properties({/* "preserve": true */}),
         postcss_custom_media(),
-        postcss_color_function()
+        postcss_color_function(),
+        postcss_color_hex_alpha()
     ]
 }
