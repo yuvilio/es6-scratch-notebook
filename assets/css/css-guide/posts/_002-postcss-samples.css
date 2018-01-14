@@ -1,3 +1,31 @@
+
+/* similar to %ex-002-simple-button in scss . this can now be reused */
+@define-placeholder ex-002-simple-button {
+	border-style: solid;
+	border-width: 1px;
+	background: linear-gradient( 45deg, tomato 0%, wheat 100%);
+	border-image: linear-gradient( 45deg, tomato 0%, wheat 100%) 1 round;
+	color: black;
+	padding: 0.6em 1.6em;
+}
+
+/* defining variables in top level scop: */
+:root {
+	--btn-003-color: wheat;
+	--btn-003-font-size : 1.1rem;
+	--color-005: slateblue;
+}
+
+/* define the mixin function you'll use, notice that variables are using dollar signs ($bg)
+as this plugin uses the postcss-simple-vars to implement it's functionality  */
+@define-mixin boxmx $bg, $border {
+	border-color: $border;
+	background-color: $bg;
+	@mixin-content; /* use whatever other styles were passed in via {} as last argument */
+}
+
+
+
 .slug-002-postcss-samples {
 
 	.ex-001-nested {
@@ -5,6 +33,52 @@
 
 		span {
 			color: tomato;
+		}
+	}
+
+
+	.ex-002-btn {
+		/* reuse that pseudoclass defined above */
+		@extend ex-002-simple-button;
+	}
+
+	.ex-002-btn-2 { /* another reuse with one adjustment */
+		@extend ex-002-simple-button;
+		padding: 1rem;
+	}
+
+	/* then using the variable, via the var() function, when needed */
+	.ex-003-btn-var  {
+		@extend ex-002-simple-button;
+		background: linear-gradient( 45deg, slateblue 0%, var(--btn-003-color) 100%);
+		font-size: calc(var(--btn-003-font-size) * 2);
+	}
+
+	.ex-005-colorbox {
+		background: color(var(--btn-003-color)   a(90%));
+		color: black;
+
+	}
+
+	.ex-006-colorbox {
+		background: color(var(--btn-003-color)   a(90%));
+		color: black;
+		/* define the media query and assign it to a variable */
+		@custom-media --small-viewport (max-width: 30rem);
+
+	 /* use the variable in a media query*/
+		@media (--small-viewport) {
+			background: tomato;
+			color: white;
+		}
+	}
+
+
+	.ex-006-box {
+		/* call the mixin you defined */
+		@mixin boxmx wheat, tomato {
+		    border-style: dotted;
+				border-width: 2px;
 		}
 	}
 

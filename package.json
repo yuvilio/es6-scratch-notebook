@@ -134,6 +134,7 @@
     "postcss-custom-properties": "^6.2.0",
     "postcss-extend": "^1.0.5",
     "postcss-import": "^11.0.0",
+    "postcss-mixins": "^6.2.0",
     "postcss-nested": "^3.0.0",
     "process-es6": "^0.11.6",
     "prop-types": "^15.6.0",
@@ -151,6 +152,7 @@
     "stylelint": "^8.4.0"
   },
   "dependencies": {
+    "postcss-simple-vars": "^4.1.0",
     "prismjs": "^1.9.0",
     "remark-cli": "^4.0.0",
     "remark-lint": "^6.0.0",
