@@ -10,7 +10,11 @@ const
     postcss_custom_media=require("postcss-custom-media"),
     postcss_color_function=require("postcss-color-function")
     postcss_color_hex_alpha=require("postcss-color-hex-alpha"),
-    postcss_mixins=require('postcss-mixins'); /*  use postcss-simple-vars */
+    postcss_selector_not=require("postcss-selector-not"),
+    postcss_selector_matches=require("postcss-selector-matches"),
+    postcss_media_minmax=require("postcss-media-minmax"),
+    postcss_mixins=require('postcss-mixins'),
+    postcss_custom_selectors=require('postcss-custom-selectors'); /*  use postcss-simple-vars */
 
 
 module.exports = {
@@ -22,9 +26,13 @@ module.exports = {
         postcss_mixins(),
         postcss_nested(),
         postcss_extend(),
+        postcss_selector_not(),
+        postcss_selector_matches(),
         postcss_calc(),
+        postcss_media_minmax(),
         postcss_custom_properties({/* "preserve": true */}),
         postcss_custom_media(),
+        postcss_custom_selectors(),
         postcss_color_function(),
         postcss_color_hex_alpha()
     ]

@@ -99,4 +99,56 @@ as this plugin uses the postcss-simple-vars to implement it's functionality  */
 	.ex-007-rgba-hex-4 {
 		background-color: #9d9f; /* completely opaque (1 transarency)*/
 	}
+
+	.ex-007-box {
+		@extend ex-002-simple-button;
+	}
+	/* select middle items */
+	.ex-007-box:not(:first-child, :last-child){
+		border-image: linear-gradient( 120deg, wheat 0%, tomato 100%) 1 round;
+		border-width: 3px;
+	}
+
+	.ex-007-box {
+		@extend ex-002-simple-button;
+	}
+
+	/*for this button, all states should have this color . */
+	.ex-008-btn:matches(:hover, :focus, :active) {
+	  color: #222;
+	}
+	/* all headings of sections or articles have this color */
+	:matches(section, article) :matches(h1, h2, h3, h4, h5, h6) {
+	  color: goldenrod;
+	}
+
+
+	.ex-009-box {
+		background-color: goldenrod;
+		color: white;
+		/* new minmax queries allow us to use width (rather than min-width and max-width) and use <=, >=,...*/
+		@media screen and (width >= 500px) and (width <= 1000px) {
+			background-color: tomato;
+		}
+	}
+
+	.ex-010-custom-selectors {
+
+
+	}
+
+	  /* define the variable (custom )*/
+		@custom-selector :--heading  h1, h2, h3, h4, h5, h6;
+
+		.ex-010-custom-selectors {
+			/*  use the variable as selector (selectors in this case) */
+			:--heading {
+				 border-bottom: 2px solid goldenrod;
+				 & + p {
+						border-left: 2px solid goldenrod;
+						border-right: 2px solid goldenrod;
+				}
+		 }
+	}
+
 }

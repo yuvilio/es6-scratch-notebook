@@ -467,3 +467,235 @@ the color spec 4 features the [#RRGGBBAA or #RGBA hex notation](https://drafts.c
 <div class="pa2 w5 ex-007-rgba-hex-4">
   #9d9f - Transparency of f fully opaque (1)
 </div>
+
+## selectors4 not() and matches()
+
+The [Selectors 4 spec](https://www.w3.org/TR/selectors4/#negation) is becoming more and more supported and comes with some updates to the not() and matches() functions. Some [details here](https://webdesign.tutsplus.com/tutorials/intriguing-css-level-4-selectors--cms-29499)
+
+
+poscss can make using these available today. For example, here are four boxes and we'll select the not first or last children  for different border styles. the new `not()` takes a [selector list](https://caniuse.com/#feat=css-not-sel-list)
+
+<div class="ex-007-boxes">
+  <div class="ex-007-box pa2 mb2 w5">
+    Ex07 box 1
+  </div>
+
+  <div class="ex-007-box pa2 mb2 w5">
+    Ex07 box 2
+  </div>
+
+  <div class="ex-007-box pa2 mb2 w5">
+    Ex07 box 3
+  </div>
+
+  <div class="ex-007-box pa2 w5">
+    Ex07 box 4
+  </div>
+</div>
+
+We did this with a `:not()` function that can now ake a list of multiple conditions:
+
+<pre><code class="language-css">
+  /* select middle items */
+	.ex-007-box:not(:first-child, :last-child){
+		border-image: linear-gradient( 120deg, wheat 0%, tomato 100%) 1 round;
+		border-width: 3px;
+	}
+</code></pre>
+
+The generated css is to more widely available grouping of not() conditions, allowing you to enjoy the elegance on your end:
+
+<pre><code class="language-css">
+  .slug-002-postcss-samples .ex-007-box:not(:first-child):not(:last-child){
+  		border-image: linear-gradient( 120deg, wheat 0%, tomato 100%) 1 round;
+  		border-width: 3px;
+  	}
+</code></pre>
+
+How it's added to `postcss.config.js`:
+
+<pre><code class="language-js">
+
+  const
+      // ..
+      postcss_selector_not =require("postcss-selector-not"),
+      // ..
+
+
+  module.exports = {
+    // ..
+
+          postcss_selector_not(),
+      // ..
+
+      ]
+  }
+
+</code></pre>
+
+
+On a similar selectors 4 spec vein, we have the `:matches()` function , leting you use fuzzier patterns to match wht to style. [postcss-selector-matches](https://github.com/postcss/postcss-selector-matches) helps here
+
+
+<pre><code class="language-css">
+  /*for this button, all states should have this color . */
+	.ex-008-btn:matches(:hover, :focus, :active) {
+	  color: #222;
+	}
+	/* all headings of sections or articles have this color */
+	:matches(section, article) :matches(h1, h2, h3, h4, h5, h6) {
+	  color: goldenrod;
+	}
+</code></pre>
+
+<section>
+  <p>this is a section</p>
+  <h2>this is a header within a section. it's colored with golden rod</h2>
+</section>
+
+<article>
+  <p>this is an article</p>
+  <h4>It has a header as well, also colored with goldenrod</h4>
+
+</article>
+
+
+The generated css shows you the power of :matche. it allows you to save from having to repeat the selector or use nesting. handy, more compact, when you don't have to space out elements with nesting.
+
+<pre><code class="language-css">
+
+  .slug-002-postcss-samples .ex-008-btn:hover, .slug-002-postcss-samples .ex-008-btn:focus, .slug-002-postcss-samples .ex-008-btn:active {
+  	  color: #222;
+  	}
+
+  .slug-002-postcss-samples section h1, .slug-002-postcss-samples article h1, .slug-002-postcss-samples section h2, .slug-002-postcss-samples article h2, .slug-002-postcss-samples section h3, .slug-002-postcss-samples article h3, .slug-002-postcss-samples section h4, .slug-002-postcss-samples article h4, .slug-002-postcss-samples section h5, .slug-002-postcss-samples article h5, .slug-002-postcss-samples section h6, .slug-002-postcss-samples article h6 {
+  	  color: goldenrod;
+  	}
+</code></pre>
+
+## media-minmax
+
+The [CSS Media Queries Level 4 spec ](https://drafts.csswg.org/mediaqueries/#mq-range-context) tries to offer an alternative `min-width` and `max-width` in media queries instead using `width` along with comparisons (`<=`, `>=`, ..).
+
+<div class="w5 pa2 ex-009-box">
+  Here is a box where the background-color changes to tomato between 500px and 1000px width
+</div>
+
+<pre><code class="language-css">
+
+  .ex-009-box {
+		background-color: goldenrod;
+		color: white;
+		/* new minmax queries allow us to use width (rather than min-width and max-width) and use <=, >=,...*/
+		@media screen and (width >= 500px) and (width <= 1000px) {
+			background-color: tomato;
+		}
+	}
+</code></pre>
+
+The generated css reverts to min-width and max-width for easier acceptance.
+<pre><code class="language-css">
+  @media screen and (min-width: 500px) and (max-width: 1000px) {
+    .slug-002-postcss-samples .ex-009-box {
+    			background-color: tomato
+    	}
+  }
+</code></pre>
+
+
+
+Once this is common in all browsers this plugin can be removed  from `postcss.config.js`. until then it's added in the usual way
+
+<pre><code class="language-js">
+  const
+  // ..
+      postcss_mixins=require('postcss-mixins'); /*  use postcss-simple-vars */
+
+
+  module.exports = {
+      plugins:[
+      // ..
+
+          postcss_media_minmax(),
+          // ..
+      ]
+  }
+
+</code></pre>
+
+
+## Custom selectors, variables as selectors
+
+What if you could have css variables in your selectors? There's a [draft css spec](https://drafts.csswg.org/css-extensions/#custom-selectors) considering that. Wanna use it now? [postcss-custom-selectors](https://github.com/postcss/postcss-custom-selectors)
+
+Here's an example that demonstrates variables working nicely as selectors , including with nesting and self reference (&amp;):
+
+<div class="w5 pa2 ex-010-custom-selectors">
+  <h2> Second level heading . underlined </h2>
+  <p class="ph2">and a blurb that has side borders </p>
+  <h3>Third level heading, also underlined </h3>
+  <p class="ph2">and another blurb which also has side borders</p>
+</div>
+
+Here's how it uses the variable definition and usage as selector :
+
+<pre><code class="language-css">
+  /* define the variable (custom )*/
+  @custom-selector :--heading  h1, h2, h3, h4, h5, h6;
+
+  .ex-010-custom-selectors {
+      /*  use the variable as selector (selectors in this case) */
+      :--heading {
+         border-bottom: 2px solid goldenrod;
+         & + p {
+            border-left: 2px solid goldenrod;
+            border-right: 2px solid goldenrod;
+        }
+     }
+  }
+</code></pre>
+
+Here is the generated css that you get . you basically get a loop through each selector and a generated selection. So a lot of bang for the buck , compactness wise:
+
+<pre><code class="language-css">
+
+  .slug-002-postcss-samples .ex-010-custom-selectors h1,
+  .slug-002-postcss-samples .ex-010-custom-selectors h2,
+  .slug-002-postcss-samples .ex-010-custom-selectors h3,
+  .slug-002-postcss-samples .ex-010-custom-selectors h4,
+  .slug-002-postcss-samples .ex-010-custom-selectors h5,
+  .slug-002-postcss-samples .ex-010-custom-selectors h6 {
+  				 border-bottom: 2px solid goldenrod;
+  		 }
+
+  .slug-002-postcss-samples .ex-010-custom-selectors h1 + p,
+  .slug-002-postcss-samples .ex-010-custom-selectors h2 + p,
+  .slug-002-postcss-samples .ex-010-custom-selectors h3 + p,
+  .slug-002-postcss-samples .ex-010-custom-selectors h4 + p,
+  .slug-002-postcss-samples .ex-010-custom-selectors h5 + p,
+  .slug-002-postcss-samples .ex-010-custom-selectors h6 + p {
+  						border-left: 2px solid goldenrod;
+  						border-right: 2px solid goldenrod;
+  				}
+</code></pre>
+
+As usual it's added, and removed via `postcss.config.js`
+
+<pre><code class="language-js">
+  const
+  // ..
+      postcss_custom_selectors=require('postcss-custom-selectors'); /*  use postcss-simple-vars */
+
+
+  module.exports = {
+      plugins:[
+      // ..
+
+          postcss_custom_selectors(),
+          // ..
+      ]
+  }
+
+</code></pre>
+
+Some other postcss plugins worth looking at: [postcss-will-change](https://github.com/postcss/postcss-will-change).
