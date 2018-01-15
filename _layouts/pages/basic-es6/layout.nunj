@@ -50,11 +50,9 @@
     {# general scripts #}
 
     {# sitewide js #}
-    {% if dev_env.env %}
-
+    {% if dev_env.env and js_bundle %}
       <script src="{{ js_bundle }}"></script>
     {% endif %}
-
 
     <!-- test -->
 
