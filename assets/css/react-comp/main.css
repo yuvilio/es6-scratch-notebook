@@ -10,6 +10,8 @@
 
 @import 'misc/_type';
 @import './components/_teaser-side';
+
 @import './pages/_001-start';
+@import './pages/_002-events';
 
 @import 'partials/_header';
