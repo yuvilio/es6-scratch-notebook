@@ -19,8 +19,8 @@
     "lint:js": {
       "patterns": [
         "assets/js",
-        "assets/js/basic-es6/03/components/",
-        "assets/js/basic-es6/07/"
+        "assets/js/react-comp/03/components/",
+        "assets/js/react-comp/07/"
       ],
       "extensions": [
         "js",
@@ -55,7 +55,7 @@
   "scripts": {
     "watch": "npm-watch",
     "lint:js": "standard assets/js/**/*.js assets/js/**/*.jsx ",
-    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/basic-es6/*.css",
+    "lint:css": "stylelint --ignore-path node_modules/**/*.css  assets/css/react-comp/*.css",
     "lint:md": "remark --quiet content/**/*.md",
     "lint:php": "phan --directory cli/phpmod/  --exclude-directory-list cli/phpmod/*/vendor",
     "lint:php:php-cs-fixer": "php-cs-fixer -vv --dry-run --rules=@PSR1,@PSR2 fix cli/phpmod/",
@@ -65,7 +65,7 @@
     "watch:js": "npm run js:dev -- --watch",
     "watch:css": "npm run styles:dev -- --watch --log",
     "watch:lint:md": "npm run lint:md -- --watch",
-    "styles:dev": "postcss ./assets/css/basic-es6/main.css -o ./dist/basic-es6/assets/css/main.css -c postcss.config.js",
+    "styles:dev": "postcss ./assets/css/react-comp/main.css -o ./dist/react-comp/assets/css/main.css -c postcss.config.js",
     "styles": "postcss  -c postcss.prod.json",
     "js:dev": "rollup --config ./rollup.config.js ",
     "js": "rollup --config ./rollup.config.js",

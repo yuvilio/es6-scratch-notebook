@@ -29,7 +29,7 @@ let's attach to it and render a simply html element
 
 renders:
 
-<div id="heyApp01"></div>
+<div class="app-box" id="heyApp01"></div>
 
 That htmly looking bit is actually just [jsx](https://facebook.github.io/react/docs/introducing-jsx.html) (javascript expression), which is a markup friendly version of javascript (hence allowing javascript to be added to it, as we'll see later),
 
@@ -76,7 +76,7 @@ we'll attach it to this element
 
 * results:
 
-<div id="heyApp02"></div>
+<div class="app-box"  id="heyApp02"></div>
 
 * we could also have gone with a function:
 
@@ -113,7 +113,7 @@ let's hook it into this component holder:
 
 * renders as :
 
-<div id="heyApp03"></div>
+<div class="app-box"  id="heyApp03"></div>
 
 
 We can guess why you'd want a compnent to be available in a few ways. If it's all a conduit for rendering, a function might make more sense.  If you need to use more storage machinery , a class that inherits methods and can have more methods added to it might make more sense. the render method can be used to display
@@ -207,7 +207,7 @@ export let Greeter = (props) => {
 
 </code></pre>
 
-<div id="heyApp04"></div>
+<div class="app-box"  id="heyApp04"></div>
 
 * How does passing prop values work with classes?
 
@@ -239,7 +239,7 @@ ReactDOM.render(
 )
 </code></pre>
 
-<div id="heyApp05"></div>
+<div class="app-box"  id="heyApp05"></div>
 
 * what if i want the component to have some default props to use (even when the calling component doesn't pass any props).
 
@@ -279,7 +279,7 @@ ReactDOM.render(
 )
 </code></pre>
 
-<div id="heyApp06"></div>
+<div class="app-box" id="heyApp06"></div>
 
 Notice that despite not passing any props in our component, the equipment variable was populated ("cyberjack, headset"), thanks to defaultProps object.
 
@@ -314,7 +314,7 @@ ReactDOM.render(
 )
 </code></pre>
 
-<div id="heyApp07"></div>
+<div class="app-box"  id="heyApp07"></div>
 
 
 My component is in javascript too, can i pass props that are in variables, rather than literals?
@@ -349,7 +349,7 @@ export { GreeterFuncVariablePassed }
   )
 </code></pre>
 
-<div id="heyApp08"></div>
+<div class="app-box"  id="heyApp08"></div>
 
 
 The passed in `yourQuarters` variable rendered fine in the component

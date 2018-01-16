@@ -10,5 +10,6 @@
 
 @import 'misc/_type';
 @import './components/_teaser-side';
+@import './pages/_001-start';
 
 @import 'partials/_header';

@@ -1,5 +1,5 @@
 // 002-function-component.jsx
-import React from 'react'
+import React from 'react' // even though React is not directly used in this file. it's being imported makes the jsx in this file not trigger an error
 
 // component as function. it just is the render function
 export let Greeter = (props) => {
