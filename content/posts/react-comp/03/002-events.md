@@ -8,7 +8,7 @@ excerpt:
 React events
 -------
 
-We can get to events in a bit but first a few more notes.
+We can get to events in a bit but first a few more notes. starting with a [composing example](https://reactjs.org/docs/components-and-props.html#composing-components).
 
 
 ## composing components .
