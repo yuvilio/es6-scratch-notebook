@@ -82,7 +82,9 @@ metalsmith
     langPrefix: 'language-'
   }))
   .use(metalsmithPrism({
-    lineNumbers: true
+    lineNumbers: true,
+    decode: true
+
   }))
   .use(permalinks({
     // original options would act as the keys of a `default` linkset,

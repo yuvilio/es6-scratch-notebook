@@ -58,14 +58,16 @@ export { Greeter }
 
 </code></pre>
 
-<pre><code class="language-js">
+{% filter escape %}
+<pre><code class="language-jsx">
 import { Greeter as Greeter2 } from './components/001-heyapp2.jsx'
 // render our component
 ReactDOM.render(
-  <Greeter2 />,
+  &lt;Greeter2 /&gt;,
   document.querySelector('#heyApp02')
 )
 </code></pre>
+{% endfilter %}
 
 we'll attach it to this element
 <pre><code class="language-html">
@@ -98,7 +100,7 @@ export let Greeter = (props) => {
 import { Greeter as GreeterFunc } from './components/002-function-component.jsx'
 // components also come in function flavor
 ReactDOM.render(
-  <GreeterFunc />,
+  &lt;GreeterFunc /&gt;,
   document.querySelector('#heyApp03')
 )
 </code></pre>
@@ -195,7 +197,7 @@ export let Greeter = (props) => {
 
 <pre><code class="language-js">
   ReactDOM.render(
-    <GreeterProps name='Wizard Mananan' />,
+    &lt;GreeterProps name='Wizard Mananan' /&gt;,
     document.querySelector('#heyApp04')
   )
 </code></pre>
@@ -232,7 +234,7 @@ export { GreeterPropClass }
 </code></pre>
 <pre><code class="language-js">
 ReactDOM.render(
-  <GreeterPropClass name='Nigel Rancid' />,
+  &lt;GreeterPropClass name='Nigel Rancid' /&gt;,
   document.querySelector('#heyApp05')
 )
 </code></pre>
@@ -272,7 +274,7 @@ GreeterDefaultProps.defaultProps = {
 // notice we're not passing the component the 'equipment' prop that it uses
 // that's ok. it has a default
 ReactDOM.render(
-  <GreeterDefaultProps />,
+  &lt;GreeterDefaultProps /&gt;,
   document.querySelector('#heyApp06')
 )
 </code></pre>
@@ -307,7 +309,7 @@ export { GreeterFuncDefaultProps }
 
 <pre><code class="language-js">
 ReactDOM.render(
-  <GreeterFuncDefaultProps />,
+  &lt;GreeterFuncDefaultProps /&gt;,
   document.querySelector('#heyApp07')
 )
 </code></pre>
@@ -342,7 +344,7 @@ export { GreeterFuncVariablePassed }
   // exppression in single brackets
   let yourQuarters = 'Converted Cargo Hold'
   ReactDOM.render(
-    <GreeterFuncVariablePassed quartersLocation={yourQuarters} />,
+    &lt;GreeterFuncVariablePassed quartersLocation={yourQuarters} /&gt;,
     document.querySelector('#heyApp08')
   )
 </code></pre>
