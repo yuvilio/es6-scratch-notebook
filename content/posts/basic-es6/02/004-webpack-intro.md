@@ -180,7 +180,7 @@ module.exports = {
 __.__
 
 <pre><code class="language-bash">
-$ node_modules/webpack-dev-server/bin/webpack-dev-server.js  --config webpack.config.js
+$ node_modules/webpack-dev-server/bin/webpack-dev-server.js  --config webpack.config.js  --entry ./assets/js/basics/01/001-test-import.js  --output-filename ./dist/assets/js/basics/01/001-test-import.js
 Project is running at http://localhost:9000/
 webpack output is served from /
 Content not from webpack is served from /home/yuvilio/Downloads/webpacktest/dist
@@ -202,6 +202,7 @@ webpack: Compiled successfully.
 
 Now when we browser to `http://localhost:9000/`, we'll see the html rendered and  the `console.log()` output,  'hey there'.
 
+Notice you might not see an actual bundle getting generated when using webpack-dev-server. It seems to load in the browser from memory (but still appear as  a file). see [here for explanation](https://www.youtube.com/watch?v=HNRt0lODCQM). Also notice, webpack-dev-server seems to work better with some command line flags (for entry and output files, ..) rather than just config
 
 Want to refresh on js change? Turn the [watch](https://webpack.js.org/configuration/watch/#watch) option on
 
@@ -314,4 +315,159 @@ and indeed, the browser shows the output from that module :
 
 <pre><code class="language-bash">
 hey there , from this module variable
+</code></pre>
+
+
+## es6 webpack
+
+can I use es6 syntax in my webpack config?
+
+Yep. one approach is to rename the file to webpack to `webpack.config.babel.js`
+
+and then add [babel-loader](https://github.com/babel/babel-loader#install)  to enable babel processing of the file. and add the babel plugin  [syntax-dynamic-import](https://babeljs.io/docs/plugins/syntax-dynamic-import/) to allow babel to  parse `import` keywords from the webpack config.js file
+
+<pre><code class="language-bash">
+$ npm install --save-dev babel-loader babel-core babel-preset-env babel-plugin-syntax-dynamic-import
+</code></pre>
+
+
+here's the `.babelrc` json you can use: (see [this note](https://github.com/babel/babel-loader/issues/493#issuecomment-317285885) and it's [followup](https://github.com/babel/babel-loader/issues/493#issuecomment-336493807)
+
+<pre><code class="language-json">
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "> 2%"]
+      }
+    }]
+  ],
+  "plugins": ["syntax-dynamic-import"]
+}
+</code></pre>
+
+now let's set up a simple `webpack.config.babel.js` file, this time using es6 syntax with `import`
+
+<pre><code class="language-js">
+// webpack.config.babel.js
+import webpack from 'webpack';
+
+export default 	{
+	entry: './assets/js/basics/01/001-test-import.js', // starting app file
+
+	output: {
+		filename: '001-test-import.js', //resulting budle
+		path: __dirname + '/dist/assets/js/basics/01/'
+	},
+}
+
+
+</code></pre>
+__.__
+
+let's test it:
+
+<pre><code class="language-bash">
+$ pwd
+/home/yuvilio/ws/apps/node/misc/webpacktest
+$
+
+$ node_modules/webpack/bin/webpack.js --config webpack.config.babel.js
+Hash: 13b948e3e1fed7ec4bda
+Version: webpack 3.10.0
+Time: 64ms
+             Asset     Size  Chunks             Chunk Names
+001-test-import.js  5.87 kB       0  [emitted]  main
+   [0] ./assets/js/basics/01/001-test-import.js 415 bytes {0} [built]
+   [3] ./assets/js/basics/01/modules/test-module.js 313 bytes {0} [built]
+    + 2 hidden modules
+$ ls -lh dist/assets/js/basics/01/001-test-import.js
+-rw-r--r-- 1 yuvilio yuvilio 5.8K Jan 21 23:34 dist/assets/js/basics/01/001-test-import.js
+$
+
+</code></pre>
+
+Nice, the bundling happened as expected. It works similarly with webpack-dev-server :
+
+<pre><code class="language-bash">
+$ node_modules/webpack-dev-server/bin/webpack-dev-server.js  --config webpack.config.babel.js  --entry ./assets/js/basics/01/001-test-impt.js  --output-filename ./dist/assets/js/basics/01/001-test-import.js
+</code></pre>
+
+
+## multiple configs.
+
+Need to swap different configs in an out? fortunately, webpack allows [multiple configurations](https://webpack.js.org/configuration/configuration-types/#exporting-multiple-configurations) with using arrays
+
+
+
+
+<pre><code class="language-js">
+
+// ./lib/webpack/basics/001-basics.js
+//past (inactive bundles). add to activeConfigs for rollup to generate them
+let pastEntries = [
+	{
+		entry: './assets/js/basics/01/001-test-import.js', // starting app file
+
+		output: {
+			filename: '002-test-import.js', //resulting budle
+			path: __dirname + '/dist/assets/js/basics/01/'
+		},
+	}
+
+
+]
+
+// overriding props for the webpack bundling
+export let baseProps = {
+
+}
+
+const activeConfigs = [
+	{
+		entry: './assets/js/basics/01/001-test-import.js', // starting app file
+
+		output: {
+			filename: '001-test-import.js', //resulting budle
+			path: __dirname +'/../../../dist/assets/js/basics/01/'
+		},
+	}
+]
+export { activeConfigs };
+
+</code></pre>
+__.__
+
+then import it in :
+
+<pre><code class="language-js">
+// webpack.config.babel.js es6 webpack config. enabled
+
+import webpack from 'webpack';
+import { activeConfigs, baseProps  } from './lib/webpack/basics/001-basics.js';
+
+// common starter webpack configs can be put here
+const defaultConfig = {
+  // webpack-dev-server config
+  devServer: {
+    compress: false,
+    inline: true,
+    port: 9000
+  },
+
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  }
+}
+
+//  currently ones webpack will bundle
+activeConfigs.forEach(activeConfig => {
+  Object.assign(activeConfig, defaultConfig)
+  Object.assign(activeConfig, baseProps)
+})
+
+
+export default activeConfigs
+
 </code></pre>
